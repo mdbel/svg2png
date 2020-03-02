@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/danikovich/svg2png/issues"
   },
-  "homepage": "https://github.com/danikovich/svg2png#readme"
+  "homepage": "https://github.com/danikovich/svg2png#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
 }
