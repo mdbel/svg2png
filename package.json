@@ -1,0 +1,19 @@
+{
+  "name": "svg2png",
+  "version": "0.0.1",
+  "description": "SVG to PNG converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danikovich/svg2png.git"
+  },
+  "author": "maksim danikovich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danikovich/svg2png/issues"
+  },
+  "homepage": "https://github.com/danikovich/svg2png#readme"
+}
