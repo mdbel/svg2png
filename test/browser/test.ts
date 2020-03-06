@@ -1,5 +1,5 @@
 import {Svg2Png} from '../../src/svg-to-png';
-import {Options} from '../../src/models/options';
+import {Options} from '../../src/shared/models';
 
 const str = document.querySelector('svg')!.outerHTML;
 const options: Options = {width: 125, height: 120, offsetX: 5};

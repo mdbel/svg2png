@@ -1,0 +1,1 @@
+export const CANVAS_CLASS_NAME = 'svg-to-png-canvas';

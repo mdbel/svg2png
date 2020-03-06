@@ -1,4 +1,5 @@
-import {Options} from './models/options';
+import {Options} from './shared/models';
+import {CANVAS_CLASS_NAME} from './shared/constants';
 
 export class Svg2Png {
     static fromString(str: string, options: Options = {}): Promise<string> {
@@ -10,10 +11,13 @@ export class Svg2Png {
                 const {offsetX = 0, offsetY = 0} = options;
                 ctx.drawImage(img, offsetX, offsetY);
                 const pngUrl = canvas.toDataURL("image/png");
-                document.body.removeChild(canvas);
+                Svg2Png.removeCanvas();
                 return pngUrl;
             })
-            .catch(() => Promise.reject(new Error('The source SVG could not be converted to PNG')));
+            .catch(() => {
+                Svg2Png.removeCanvas();
+                return Promise.reject(new Error('The source SVG could not be converted to PNG'));
+            });
     }
 
     static fromUrl(url: string) {
@@ -22,11 +26,19 @@ export class Svg2Png {
 
     private static createCanvas(options: Options): HTMLCanvasElement {
         const canvas = document.createElement('canvas')!;
+        canvas.className = CANVAS_CLASS_NAME;
         document.body.appendChild(canvas);
         const {width = 100, height = 100} = options;
         canvas.width = width;
         canvas.height = height;
         return canvas;
+    }
+
+    private static removeCanvas() {
+        const canvas = document.body.querySelector(`.${CANVAS_CLASS_NAME}`);
+        if (canvas) {
+            document.body.removeChild(canvas);
+        }
     }
 
     private static addImageProcess(src: string): Promise<HTMLImageElement> {
