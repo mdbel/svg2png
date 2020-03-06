@@ -24,8 +24,8 @@ export class Svg2Png {
         const canvas = document.createElement('canvas')!;
         document.body.appendChild(canvas);
         const {width = 100, height = 100} = options;
-        canvas.setAttribute('width', width + '');
-        canvas.setAttribute('height', height + '');
+        canvas.width = width;
+        canvas.height = height;
         return canvas;
     }
 
