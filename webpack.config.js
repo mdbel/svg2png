@@ -6,7 +6,6 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = (env) => {
 
     const entryPoint = env === 'test' ? './test/browser/test.ts' : './src/index.ts';
-    const outputFileName = env === 'test' ? 'test.js' : 'index.js';
 
     const props = {
         entry: ['babel-polyfill', entryPoint],
@@ -29,7 +28,7 @@ module.exports = (env) => {
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: outputFileName
+            filename: 'index.js'
         },
         plugins: [
             new CleanWebpackPlugin(),
@@ -39,10 +38,10 @@ module.exports = (env) => {
 
     if (env === 'test') {
         props.plugins.push(
-            new HTMLWebpackPlugin([{
+            new HTMLWebpackPlugin({
                 title: 'Development',
                 template: './test/browser/index.html'
-            }]))
+            }))
     }
 
     return props
