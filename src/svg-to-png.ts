@@ -27,6 +27,7 @@ export class Svg2Png {
     private static createCanvas(options: Options): HTMLCanvasElement {
         const canvas = document.createElement('canvas')!;
         canvas.className = CANVAS_CLASS_NAME;
+        canvas.style.visibility = 'hidden';
         document.body.appendChild(canvas);
         const {width = 100, height = 100} = options;
         canvas.width = width;
