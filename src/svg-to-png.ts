@@ -7,6 +7,9 @@ export class Svg2Png {
         if (!svg) {
             return Promise.resolve('');
         }
+        if (options.embedCSS) {
+            Svg2Png.embedCSS(svg);
+        }
         const str = Svg2Png.serialize(svg);
         const dataUrl = `data:image/svg+xml;base64,${btoa(str)}`;
         const canvas = Svg2Png.createCanvas(options);
@@ -55,5 +58,42 @@ export class Svg2Png {
             img.onerror = reject;
             img.src = src;
         });
+    }
+
+    private static embedCSS(svg: SVGSVGElement) {
+        const allStyles = Svg2Png.getUsedStyles(svg);
+        const style = document.createElement('style');
+        style.setAttribute('type', 'text/css');
+        style.innerHTML = allStyles;
+
+        const defs = document.createElementNS(null, 'defs');
+        defs.appendChild(style);
+        svg.insertBefore(defs, svg.firstChild);
+    }
+
+    private static getUsedStyles(svg: SVGSVGElement) {
+        let allStyles = '';
+        const styleSheets = Array.from(document.styleSheets);
+
+        styleSheets.forEach((sheet: any) => {
+            let rules;
+            try {
+                rules = sheet['cssRules'];
+            } catch {
+                return;
+            }
+            Array.from(rules).forEach((rule: any) => {
+                const style: CSSRule = rule['style'];
+                if (style) {
+                    const selector = rule['selectorText'];
+                    const elements = svg.querySelectorAll(selector);
+                    if (elements && elements.length > 0) {
+                        allStyles += `${selector} { ${style.cssText} }\n`;
+                    }
+                }
+            });
+        });
+
+        return allStyles;
     }
 }
