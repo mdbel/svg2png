@@ -2,10 +2,15 @@ import {Options} from './shared/models';
 import {CANVAS_CLASS_NAME} from './shared/constants';
 
 export class Svg2Png {
-    static fromString(str: string, options: Options = {}): Promise<string> {
+    static toDataURL(source: string | SVGSVGElement, options: Options = {}): Promise<string> {
+        const svg: SVGSVGElement = typeof source === 'string' ? document.querySelector(source) : source;
+        if (!svg) {
+            return Promise.resolve('');
+        }
+        const str = Svg2Png.serialize(svg);
         const dataUrl = `data:image/svg+xml;base64,${btoa(str)}`;
         const canvas = Svg2Png.createCanvas(options);
-        const ctx = canvas.getContext('2d')!;
+        const ctx = canvas.getContext('2d');
         return Svg2Png.addImageProcess(dataUrl)
             .then((img: HTMLImageElement) => {
                 const {offsetX = 0, offsetY = 0} = options;
@@ -20,12 +25,13 @@ export class Svg2Png {
             });
     }
 
-    static fromUrl(url: string) {
-
+    private static serialize(svg: SVGSVGElement): string {
+        const serializer = new XMLSerializer();
+        return serializer.serializeToString(svg);
     }
 
     private static createCanvas(options: Options): HTMLCanvasElement {
-        const canvas = document.createElement('canvas')!;
+        const canvas = document.createElement('canvas');
         canvas.className = CANVAS_CLASS_NAME;
         canvas.style.visibility = 'hidden';
         document.body.appendChild(canvas);

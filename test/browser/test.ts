@@ -1,9 +1,9 @@
 import {Svg2Png} from '../../src/svg-to-png';
 import {Options} from '../../src/shared/models';
 
-const str = document.querySelector('svg')!.outerHTML;
+const svg = document.querySelector('svg');
 const options: Options = {width: 125, height: 120, offsetX: 5};
-Svg2Png.fromString(str, options).then((url) => {
+Svg2Png.toDataURL(svg, options).then((url) => {
     const img = document.querySelector('img.test-img')!;
     img.setAttribute('src', url);
 });
