@@ -1,22 +1,24 @@
-import {Options} from './shared/models';
+import {Options} from './shared/options/models';
 import {CANVAS_CLASS_NAME} from './shared/constants';
+import {getOptions} from './shared/options/options';
 
 export class Svg2Png {
-    static toDataURL(source: string | SVGSVGElement, options: Options = {}): Promise<string> {
+    static toDataURL(source: string | SVGSVGElement, options?: Options): Promise<string> {
+        const opts = getOptions(options);
         const svg: SVGSVGElement = typeof source === 'string' ? document.querySelector(source) : source;
         if (!svg) {
             return Promise.resolve('');
         }
-        if (options.embedCSS) {
+        if (opts.embedCSS) {
             Svg2Png.embedCSS(svg);
         }
         const str = Svg2Png.serialize(svg);
         const dataUrl = `data:image/svg+xml;base64,${btoa(str)}`;
-        const canvas = Svg2Png.createCanvas(options);
+        const canvas = Svg2Png.createCanvas(opts);
         const ctx = canvas.getContext('2d');
         return Svg2Png.addImageProcess(dataUrl)
             .then((img: HTMLImageElement) => {
-                const {offsetX = 0, offsetY = 0} = options;
+                const {offsetX, offsetY} = opts;
                 ctx.drawImage(img, offsetX, offsetY);
                 const pngUrl = canvas.toDataURL("image/png");
                 Svg2Png.removeCanvas();
@@ -38,7 +40,7 @@ export class Svg2Png {
         canvas.className = CANVAS_CLASS_NAME;
         canvas.style.visibility = 'hidden';
         document.body.appendChild(canvas);
-        const {width = 100, height = 100} = options;
+        const {width, height} = options;
         canvas.width = width;
         canvas.height = height;
         return canvas;
