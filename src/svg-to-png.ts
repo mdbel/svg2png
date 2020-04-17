@@ -16,6 +16,10 @@ export class Svg2Png {
         const dataUrl = `data:image/svg+xml;base64,${btoa(str)}`;
         const canvas = Svg2Png.createCanvas(opts);
         const ctx = canvas.getContext('2d');
+        if (opts.background) {
+            ctx.fillStyle = opts.background;
+            ctx.fillRect(0, 0, opts.width, opts.height);
+        }
         return Svg2Png.addImageProcess(dataUrl)
             .then((img: HTMLImageElement) => {
                 const {offsetX, offsetY} = opts;

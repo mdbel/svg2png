@@ -6,7 +6,8 @@ const defaultOptions: Options = {
     height: DEFAULT_CANVAS_SIZE,
     offsetX: 0,
     offsetY: 0,
-    embedCSS: false
+    embedCSS: false,
+    background: undefined
 };
 
 export const getOptions = (options: Options = {}): Options => {

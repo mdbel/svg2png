@@ -4,4 +4,5 @@ export interface Options {
     height?: number;
     offsetX?: number;
     offsetY?: number;
+    background?: string;
 }
