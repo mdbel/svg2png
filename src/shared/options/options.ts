@@ -1,6 +1,6 @@
 import {Options} from './models';
 
-const defaultOptions: Options = {
+export const defaultOptions: Options = {
     scaleX: 1,
     scaleY: 1,
     embedCSS: false
