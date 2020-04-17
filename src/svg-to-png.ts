@@ -24,7 +24,7 @@ export class Svg2Png {
         return Svg2Png.addImageProcess(dataUrl)
             .then((img: HTMLImageElement) => {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                const pngUrl = canvas.toDataURL("image/png");
+                const pngUrl = canvas.toDataURL('image/png');
                 Svg2Png.removeCanvas();
                 return pngUrl;
             })
@@ -80,7 +80,7 @@ export class Svg2Png {
         svg.insertBefore(defs, svg.firstChild);
     }
 
-    private static getUsedStyles(svg: SVGSVGElement) {
+    private static getUsedStyles(svg: SVGSVGElement): string {
         let allStyles = '';
         const styleSheets = Array.from(document.styleSheets);
 
