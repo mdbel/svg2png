@@ -14,16 +14,16 @@ export class Svg2Png {
         }
         const str = Svg2Png.serialize(svg);
         const dataUrl = `data:image/svg+xml;base64,${btoa(str)}`;
-        const canvas = Svg2Png.createCanvas(opts);
+        const canvas = Svg2Png.createCanvas();
+
+        const {width, height} = Svg2Png.getSVGSize(svg);
+        const {scaleX, scaleY} = opts;
+        canvas.width = width * scaleX;
+        canvas.height = height * scaleY;
         const ctx = canvas.getContext('2d');
-        if (opts.background) {
-            ctx.fillStyle = opts.background;
-            ctx.fillRect(0, 0, opts.width, opts.height);
-        }
         return Svg2Png.addImageProcess(dataUrl)
             .then((img: HTMLImageElement) => {
-                const {offsetX, offsetY} = opts;
-                ctx.drawImage(img, offsetX, offsetY);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 const pngUrl = canvas.toDataURL("image/png");
                 Svg2Png.removeCanvas();
                 return pngUrl;
@@ -39,14 +39,11 @@ export class Svg2Png {
         return serializer.serializeToString(svg);
     }
 
-    private static createCanvas(options: Options): HTMLCanvasElement {
+    private static createCanvas(): HTMLCanvasElement {
         const canvas = document.createElement('canvas');
         canvas.className = CANVAS_CLASS_NAME;
         canvas.style.visibility = 'hidden';
         document.body.appendChild(canvas);
-        const {width, height} = options;
-        canvas.width = width;
-        canvas.height = height;
         return canvas;
     }
 
@@ -55,6 +52,12 @@ export class Svg2Png {
         if (canvas) {
             document.body.removeChild(canvas);
         }
+    }
+
+    private static getSVGSize(svg: SVGSVGElement): { width: number, height: number } {
+        const width = +svg.getAttributeNS(null, 'width') || 0;
+        const height = +svg.getAttributeNS(null, 'height') || 0;
+        return {width, height};
     }
 
     private static addImageProcess(src: string): Promise<HTMLImageElement> {

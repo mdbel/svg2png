@@ -1,13 +1,9 @@
 import {Options} from './models';
 
-const DEFAULT_CANVAS_SIZE = 100;
 const defaultOptions: Options = {
-    width: DEFAULT_CANVAS_SIZE,
-    height: DEFAULT_CANVAS_SIZE,
-    offsetX: 0,
-    offsetY: 0,
-    embedCSS: false,
-    background: undefined
+    scaleX: 1,
+    scaleY: 1,
+    embedCSS: false
 };
 
 export const getOptions = (options: Options = {}): Options => {
