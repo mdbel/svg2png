@@ -7,8 +7,12 @@ export class Svg2Png {
         const opts = getOptions(options);
         const svg: SVGSVGElement = typeof source === 'string' ? document.querySelector(source) : source;
         if (!svg) {
-            return Promise.resolve('');
+            return Promise.reject(new Error('SVG not found'));
         }
+        if (svg.nodeName !== 'svg') {
+            return Promise.reject(new Error('Only SVG can be converted to PNG'));
+        }
+
         if (opts.embedCSS) {
             Svg2Png.embedCSS(svg);
         }
