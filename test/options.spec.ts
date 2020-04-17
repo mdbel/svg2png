@@ -3,7 +3,7 @@ import {Options} from '../src/shared/options/models';
 
 describe('when using options helper', () => {
 
-    it('should return default options if options not provided', function () {
+    it('should return default options if options not provided', () => {
         expect(getOptions()).toEqual(defaultOptions);
     });
 
