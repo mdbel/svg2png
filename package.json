@@ -7,7 +7,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --env=test --open"
+    "start": "webpack-dev-server --env=test --open",
+    "prepublish": "npm test"
   },
   "files": [
     "dist"
@@ -16,6 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/mdbel/svg2png.git"
   },
+  "keywords": ["SVG", "PNG", "SVG to PNG"],
   "author": "maksim mdbel",
   "license": "ISC",
   "bugs": {
