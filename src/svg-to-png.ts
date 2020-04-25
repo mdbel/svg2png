@@ -1,5 +1,5 @@
 import {Options} from './shared/options/models';
-import {CANVAS_CLASS_NAME} from './shared/constants';
+import {CANVAS_CLASS_NAME, DEFS_ID, NAMESPACE} from './shared/constants';
 import {getOptions} from './shared/options/options';
 
 export class Svg2Png {
@@ -30,10 +30,12 @@ export class Svg2Png {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 const pngUrl = canvas.toDataURL('image/png');
                 Svg2Png.removeCanvas();
+                Svg2Png.removeDefs(svg);
                 return pngUrl;
             })
             .catch(() => {
                 Svg2Png.removeCanvas();
+                Svg2Png.removeDefs(svg);
                 return Promise.reject(new Error('The source SVG could not be converted to PNG'));
             });
     }
@@ -58,6 +60,13 @@ export class Svg2Png {
         }
     }
 
+    private static removeDefs(svg: SVGSVGElement) {
+        const defs = svg.querySelector(`#${DEFS_ID}`);
+        if (defs) {
+            svg.removeChild(defs);
+        }
+    }
+
     private static getSVGSize(svg: SVGSVGElement): { width: number, height: number } {
         const width = +svg.getAttributeNS(null, 'width') || 0;
         const height = +svg.getAttributeNS(null, 'height') || 0;
@@ -79,7 +88,8 @@ export class Svg2Png {
         style.setAttribute('type', 'text/css');
         style.innerHTML = allStyles;
 
-        const defs = document.createElementNS(null, 'defs');
+        const defs = document.createElementNS(NAMESPACE, 'defs');
+        defs.id = DEFS_ID;
         defs.appendChild(style);
         svg.insertBefore(defs, svg.firstChild);
     }
