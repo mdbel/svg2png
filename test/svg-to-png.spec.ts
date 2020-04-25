@@ -3,7 +3,7 @@ import {Svg2Png} from '../src';
 describe('when converting SVG to PNG', () => {
     it('should catch an error when SVG selector is not correct', async () => {
         try {
-         await Svg2Png.toDataURL('blabla')
+         await Svg2Png.toDataURL('blabla');
         } catch (e) {
             expect(e.message).toBe('SVG not found')
         }
