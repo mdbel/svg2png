@@ -14,14 +14,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danikovich/svg2png.git"
+    "url": "git+https://github.com/mdbel/svg2png.git"
   },
-  "author": "maksim danikovich",
+  "author": "maksim mdbel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/danikovich/svg2png/issues"
+    "url": "https://github.com/mdbel/svg2png/issues"
   },
-  "homepage": "https://github.com/danikovich/svg2png#readme",
+  "homepage": "https://github.com/mdbel/svg2png#readme",
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@types/node": "^13.7.7",
