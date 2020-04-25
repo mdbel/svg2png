@@ -1,5 +1,5 @@
 {
-  "name": "svg2png",
+  "name": "svg2png-converter",
   "version": "0.0.1",
   "description": "SVG to PNG converter",
   "main": "dist/index.js",
