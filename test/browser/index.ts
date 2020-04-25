@@ -1,5 +1,5 @@
 import {Svg2Png} from '../../src/svg-to-png';
-import {Options} from '../../src/shared/options/models';
+import {Options} from '../../src/shared/options/options';
 
 const svgRect: SVGSVGElement = document.querySelector('svg#rect');
 const svgMonitor: SVGSVGElement = document.querySelector('svg#monitor');

@@ -1,4 +1,8 @@
-import {Options} from './models';
+export interface Options {
+    embedCSS?: boolean;
+    scaleX?: number;
+    scaleY?: number;
+}
 
 export const defaultOptions: Options = {
     scaleX: 1,

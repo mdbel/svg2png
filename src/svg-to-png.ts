@@ -1,6 +1,5 @@
-import {Options} from './shared/options/models';
 import {CANVAS_CLASS_NAME, DEFS_ID, NAMESPACE} from './shared/constants';
-import {getOptions} from './shared/options/options';
+import {getOptions, Options} from './shared/options/options';
 
 export class Svg2Png {
     static toDataURL(source: string | SVGSVGElement, options?: Options): Promise<string> {
