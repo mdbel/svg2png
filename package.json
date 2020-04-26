@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.config.js",
     "build:tsc": "tsc",
     "start": "webpack-dev-server --env=test --open",
-    "prepare" : "npm run build:tsc",
+    "prepare" : "npm run build",
     "prepublishOnly": "npm test"
   },
   "files": [
