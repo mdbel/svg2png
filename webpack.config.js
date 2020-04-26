@@ -28,7 +28,12 @@ module.exports = (env) => {
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'index.js'
+            filename: 'index.js',
+            ... (env === 'test' ? {} : {
+                libraryTarget: 'umd',
+                library: 'Svg2Png',
+                umdNamedDefine: true
+            })
         },
         plugins: [
             new CleanWebpackPlugin(),
