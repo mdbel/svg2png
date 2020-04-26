@@ -1,4 +1,4 @@
-import {Svg2Png} from '../../src/svg-to-png';
+import {Svg2Png} from '../../src/index';
 import {Options} from '../../src/shared/options/options';
 
 const svgRect: SVGSVGElement = document.querySelector('svg#rect');

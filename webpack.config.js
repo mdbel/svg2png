@@ -5,10 +5,10 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = (env) => {
 
-    const entryPoint = env === 'test' ? './test/browser/index.ts' : './src/index.ts';
+    const entry = env === 'test' ? ['babel-polyfill','./test/browser/index.ts'] : './src/index.ts';
 
     const props = {
-        entry: ['babel-polyfill', entryPoint],
+        entry: entry,
         module: {
             rules: [
                 {
