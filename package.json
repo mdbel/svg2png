@@ -1,14 +1,15 @@
 {
   "name": "svg2png-converter",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "SVG to PNG converter",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "webpack --config webpack.config.js",
+    "build:tsc": "tsc",
     "start": "webpack-dev-server --env=test --open",
-    "prepare" : "npm run build",
+    "prepare" : "npm run build:tsc",
     "prepublishOnly": "npm test"
   },
   "files": [
