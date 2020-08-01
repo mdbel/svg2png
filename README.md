@@ -5,7 +5,7 @@ If you want to generate a PNG dataURI, you can call **Svg2Png.toDataURL(source, 
 As a source you can use an SVG element or a selector that refers to an element in DOM. 
 If you want to download your SVG as PNG, you can call **Svg2Png.save(source, name, options)**
 ## Installation
-The easiest way is to install `svg2png-converter` as a `devDependency`.
+To install with npm:
 ```bash
 npm i svg2png-converter
 ```
