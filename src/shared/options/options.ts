@@ -7,7 +7,7 @@ export interface Options {
 export const defaultOptions: Options = {
     scaleX: 1,
     scaleY: 1,
-    embedCSS: false
+    embedCSS: true
 };
 
 export const getOptions = (options: Options = {}): Options => {

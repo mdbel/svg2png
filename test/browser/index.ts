@@ -13,3 +13,6 @@ const options: Options = {
 Svg2Png.toDataURL(svgRect, options).then((url) => {
     img.setAttribute('src', url);
 });
+
+Svg2Png.save(svgMonitor, 'name', options);
+Svg2Png.save('test', 'name', options);

@@ -39,6 +39,21 @@ export class Svg2Png {
             });
     }
 
+    static save(source: string | SVGSVGElement, name?: string, options?: Options) {
+        Svg2Png.toDataURL(source, options)
+            .then(url => {
+                Svg2Png.downloadPNG(url, name);
+            })
+            .catch(error => console.error(error));
+    }
+
+    private static downloadPNG(url: string, name = 'image') {
+        const download = document.createElement('a');
+        download.href = url;
+        download.download = name;
+        download.click();
+    }
+
     private static serialize(svg: SVGSVGElement): string {
         const serializer = new XMLSerializer();
         return serializer.serializeToString(svg);
