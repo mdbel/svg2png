@@ -24,8 +24,8 @@
     "PNG",
     "SVG to PNG"
   ],
-  "author": "maksim mdbel",
-  "license": "ISC",
+  "author": "Maksim mdbel",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mdbel/svg2png/issues"
   },
