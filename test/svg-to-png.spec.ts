@@ -5,7 +5,7 @@ describe('when converting SVG to PNG', () => {
         try {
             await Svg2Png.toDataURL('blabla');
         } catch (e) {
-            expect(e.message).toBe('SVG not found');
+            expect(e).toBe('SVG not found');
         }
     });
 
@@ -14,7 +14,7 @@ describe('when converting SVG to PNG', () => {
         try {
             await Svg2Png.toDataURL(element as unknown as SVGSVGElement);
         } catch (e) {
-            expect(e.message).toBe('Only SVG can be converted to PNG');
+            expect(e).toBe('Only SVG can be converted to PNG');
         }
     });
 });
