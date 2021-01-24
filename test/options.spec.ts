@@ -1,5 +1,5 @@
 import {defaultOptions, getOptions} from '../src/shared/options/options';
-import {Options} from '../src/shared/options/models';
+import {Options} from '../src/shared/options/options';
 
 describe('when using options helper', () => {
 
