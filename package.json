@@ -1,6 +1,6 @@
 {
   "name": "svg2png-converter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SVG to PNG converter",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,6 +42,6 @@
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.11.2"
   }
 }
