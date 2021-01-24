@@ -10,10 +10,12 @@ const options: Options = {
     scaleX: 1.5
 };
 
-Svg2Png.toDataURL(svgRect, options).then((url) => {
-    img.setAttribute('src', url);
-})
-    .catch(err => console.log('test', err));
+Svg2Png.toDataURL(svgRect, options)
+    .then((url) => {
+        img.setAttribute('src', url);
+    })
+    .catch(err => console.log('test err: ', err));
+
 
 Svg2Png.save(svgMonitor, 'name', options);
-Svg2Png.save('test', 'name', options);
+Svg2Png.save('test', 'test', options);

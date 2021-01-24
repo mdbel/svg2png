@@ -42,7 +42,7 @@ export class Converter {
             });
     }
 
-    save() {
+    save(name?: string) {
         this.toDataURI()
             .then(url => this.downloadPNG(url, name))
             .catch(error => console.warn(error));
@@ -106,8 +106,8 @@ export class Converter {
     }
 
     private getSVGSize(svg: SVGSVGElement): { width: number, height: number } {
-        const width = +svg.getAttributeNS(null, 'width') || 0;
-        const height = +svg.getAttributeNS(null, 'height') || 0;
+        const width = svg.width.baseVal.value || +svg.getAttribute('width') || 0;
+        const height = svg.height.baseVal.value || +svg.getAttribute( 'height') || 0;
         return {width, height};
     }
 

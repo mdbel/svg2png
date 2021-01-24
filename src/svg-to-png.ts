@@ -9,6 +9,6 @@ export class Svg2Png {
 
     static save(source: string | SVGSVGElement, name?: string, options?: Options) {
         const converter = new Converter(source, options);
-        converter.save();
+        converter.save(name);
     }
 }
