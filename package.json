@@ -7,7 +7,6 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --config webpack.config.js --mode production",
-    "build:tsc": "tsc",
     "start": "webpack serve --mode development",
     "prepare": "npm run build",
     "prepublishOnly": "npm test"
@@ -22,7 +21,10 @@
   "keywords": [
     "SVG",
     "PNG",
-    "SVG to PNG"
+    "SVG to PNG",
+    "svg2png",
+    "converter",
+    "svg2png-converter"
   ],
   "author": "Maksim mdbel",
   "license": "MIT",
