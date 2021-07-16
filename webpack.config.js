@@ -3,9 +3,8 @@ const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
-module.exports = (env) => {
-
-    const entry = env === 'test' ? ['babel-polyfill','./test/browser/index.ts'] : './src/index.ts';
+module.exports = (env, argv) => {
+    const entry = argv.mode === 'production' ? './src/index.ts' : ['babel-polyfill', './test/browser/index.ts'];
 
     const props = {
         entry: entry,
@@ -29,7 +28,7 @@ module.exports = (env) => {
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'index.js',
-            ... (env === 'test' ? {} : {
+            ... (argv.mode === 'development' ? {} : {
                 libraryTarget: 'umd',
                 library: 'Svg2Png',
                 umdNamedDefine: true
@@ -41,7 +40,7 @@ module.exports = (env) => {
         ]
     };
 
-    if (env === 'test') {
+    if (argv.mode === 'development') {
         props.plugins.push(
             new HTMLWebpackPlugin({
                 title: 'Development',
